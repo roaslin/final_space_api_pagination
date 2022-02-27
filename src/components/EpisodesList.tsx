@@ -1,14 +1,14 @@
 import { Key } from 'react';
 import EpisodeItem from './EpisodeItem';
 
-interface Episode {
+export interface Episode {
   id: Key;
-  name: String;
-  air_date: String;
-  director: String;
-  writer: String;
-  characters_images: ReadonlyArray<String>;
-  img_url: String;
+  name: string;
+  air_date: string;
+  director: string;
+  writer: string;
+  characters: ReadonlyArray<string>;
+  img_url: string;
 }
 
 const EpisodesList = ({
@@ -19,7 +19,9 @@ const EpisodesList = ({
   characters: Map<string, string>;
 }) => {
   const listOfEpisodes = episodes.map((episode: Episode) => {
-    return <EpisodeItem key={episode.id} episode={episode} characters={characters} />;
+    return (
+      <EpisodeItem key={episode.id} episode={episode} characters={characters} />
+    );
   });
 
   return <div className='ui relaxed divided list'>{listOfEpisodes}</div>;

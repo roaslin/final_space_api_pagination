@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { fetchCharacter, fetchEpisodes } from './api/api';
 import httpClient from './api/httpClient';
 import './App.css';
 import EpisodesList from './components/EpisodesList';
@@ -12,19 +13,11 @@ class App extends Component {
     totalPages: 0,
   };
 
-  fetchEpisodes = async () => {
-    try {
-      const request = await httpClient.get('/episode');
-      return request.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  fetchCharacter = async (url: string) => {
+  storeCharactersImages = async (url: string) => {
     try {
       const characterId = url.substring(url.lastIndexOf('/', url.length));
-      const request = await httpClient.get('/character' + characterId);
-      const characterImage = request.data.img_url;
+      const character = await fetchCharacter(characterId);
+      const characterImage = character.img_url;
       const newCharacters = new Map(this.state.characters);
       newCharacters.set(url, characterImage);
       this.setState({
@@ -43,11 +36,11 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const rawEpisodes = await this.fetchEpisodes();
-    const rawCharacters = rawEpisodes
+    const rawEpisodes = await fetchEpisodes();
+    const rawCharactersUrls = rawEpisodes
       .flatMap((episode: any) => episode.characters)
       .filter((v: string, i: number, a: string) => a.indexOf(v) === i);
-    rawCharacters.forEach((url: string) => this.fetchCharacter(url));
+    rawCharactersUrls.forEach((url: string) => this.storeCharactersImages(url));
     const totalPages = Math.ceil(rawEpisodes.length / this.state.pageSize);
 
     this.setState({ rawEpisodes: rawEpisodes, totalPages: totalPages });

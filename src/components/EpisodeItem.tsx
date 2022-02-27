@@ -1,10 +1,11 @@
+import { Episode } from './EpisodesList';
 import ImageItem from './ImageItem';
 
 const EpisodeItem = ({
   episode,
   characters,
 }: {
-  episode: any;
+  episode: Episode;
   characters: Map<string, string>;
 }) => {
   const images = episode.characters.map((url: string) => {
