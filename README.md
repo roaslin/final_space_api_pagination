@@ -21,5 +21,6 @@ In the end I decided to dockerize the final solution, so it is easier to run and
 ## Improvements
 
 - Add tests for the components
+- Use hooks instead
 - Improve how the characters images are positioned on the page
 - For bigger chunks of data maybe use an out-of-the-box library to help with pagination
