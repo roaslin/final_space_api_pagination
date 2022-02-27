@@ -1,4 +1,4 @@
-import { Episode } from './EpisodesList';
+import { Episode } from './EpisodesListPagination';
 import ImageItem from './ImageItem';
 
 const EpisodeItem = ({
@@ -10,10 +10,6 @@ const EpisodeItem = ({
 }) => {
   const images = episode.characters.map((url: string) => {
     const source = characters.get(url) as string;
-    if (!source) {
-      console.log(source);
-      console.log(url);
-    }
     return <ImageItem key={url} source={source} />;
   });
   return (

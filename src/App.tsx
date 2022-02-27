@@ -52,28 +52,14 @@ class App extends Component {
 
     return (
       <div className='ui container'>
-        <EpisodesList episodes={episodes} characters={this.state.characters} />
-        <div className='ui segment right floated'>
-          <div className='ui three column grid right floated'>
-            <button
-              disabled={this.state.currentPage === 1}
-              onClick={this.previousPage}
-              className='tiny ui button'
-            >
-              Previous
-            </button>
-            <div className='ui content center aligned'>
-              {this.state.currentPage}
-            </div>
-            <button
-              disabled={this.state.currentPage === this.state.totalPages}
-              onClick={this.nextPage}
-              className='tiny ui button'
-            >
-              Next
-            </button>
-          </div>
-        </div>
+        <EpisodesList
+          episodes={episodes}
+          characters={this.state.characters}
+          currentPage={this.state.currentPage}
+          totalPages={this.state.totalPages}
+          onClickPreviousButton={this.previousPage}
+          onClickNextButton={this.nextPage}
+        />
       </div>
     );
   }
