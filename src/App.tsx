@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { fetchCharacter, fetchEpisodes } from './api/api';
 import './App.css';
-import EpisodesList from './components/EpisodesList';
+import EpisodesList from './components/EpisodesListPagination';
 
 class App extends Component {
   state = {
