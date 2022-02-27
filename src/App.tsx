@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { fetchCharacter, fetchEpisodes } from './api/api';
-import httpClient from './api/httpClient';
 import './App.css';
 import EpisodesList from './components/EpisodesList';
 
